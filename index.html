@@ -910,6 +910,132 @@
               </div>
             </div>
           </section>
+
+          <!-- SEÇÃO DE ENQUETE & BANNER "ENTRELINHAS DA NOTÍCIA" -->
+          <div class="space-y-8">
+            <!-- ENQUETE MOCKADA INTERATIVA -->
+            <div
+              class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"
+            >
+              <div
+                class="bg-azul-norte text-white px-5 py-3.5 font-nexa font-extrabold text-sm uppercase tracking-wider flex items-center gap-2"
+              >
+                <i data-lucide="bar-chart-2" class="w-4 h-4 text-amber-400"></i>
+                Enquete Norte67
+              </div>
+
+              <div class="p-5 space-y-4">
+                <h4
+                  class="font-nexa font-bold text-slate-900 text-sm sm:text-base leading-snug"
+                >
+                  Você concorda com a antecipação da eleição da Mesa Diretora da
+                  Câmara de Coxim?
+                </h4>
+
+                <!-- Formulário / Opções de Voto -->
+                <form id="poll-form" class="space-y-3">
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-laranja-norte bg-slate-50/50 cursor-pointer transition-all"
+                  >
+                    <input
+                      type="radio"
+                      name="poll-option"
+                      value="sim"
+                      class="w-4 h-4 text-laranja-norte focus:ring-orange-500"
+                      required
+                    />
+                    <span class="font-inter text-sm text-slate-800 font-medium"
+                      >Sim</span
+                    >
+                  </label>
+
+                  <label
+                    class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-laranja-norte bg-slate-50/50 cursor-pointer transition-all"
+                  >
+                    <input
+                      type="radio"
+                      name="poll-option"
+                      value="nao"
+                      class="w-4 h-4 text-laranja-norte focus:ring-orange-500"
+                    />
+                    <span class="font-inter text-sm text-slate-800 font-medium"
+                      >Não</span
+                    >
+                  </label>
+
+                  <div class="pt-2 flex flex-col gap-2">
+                    <button
+                      type="submit"
+                      class="w-full bg-azul-norte hover:bg-slate-800 text-white font-nexa font-bold text-xs uppercase py-3 rounded-xl shadow transition-all"
+                    >
+                      Votar
+                    </button>
+                    <button
+                      type="button"
+                      id="btn-view-results"
+                      class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-nexa font-bold text-xs uppercase py-2.5 rounded-xl transition-colors"
+                    >
+                      Ver Resultados
+                    </button>
+                  </div>
+                </form>
+
+                <!-- Container de Resultados (Oculto inicialmente) -->
+                <div id="poll-results" class="hidden space-y-3 pt-2">
+                  <div
+                    class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2"
+                  >
+                    Resultado Parcial:
+                  </div>
+
+                  <div>
+                    <div
+                      class="flex justify-between text-xs font-semibold text-slate-700 mb-1"
+                    >
+                      <span>Sim</span>
+                      <span>68% (342 votos)</span>
+                    </div>
+                    <div
+                      class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"
+                    >
+                      <div
+                        class="bg-emerald-500 h-full rounded-full"
+                        style="width: 68%"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div
+                      class="flex justify-between text-xs font-semibold text-slate-700 mb-1"
+                    >
+                      <span>Não</span>
+                      <span>32% (161 votos)</span>
+                    </div>
+                    <div
+                      class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"
+                    >
+                      <div
+                        class="bg-laranja-norte h-full rounded-full"
+                        style="width: 32%"
+                      ></div>
+                    </div>
+                  </div>
+
+                  <p class="text-[11px] text-slate-400 text-center pt-2">
+                    Total de votos: 503
+                  </p>
+                  <button
+                    type="button"
+                    id="btn-back-poll"
+                    class="w-full mt-2 text-xs text-azul-norte font-bold hover:underline text-center block"
+                  >
+                    ← Voltar para votação
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- COLUNA DA DIREITA: SIDEBAR & BANNERS ANUNCIANTES (4 COLUNAS) -->
@@ -1071,6 +1197,57 @@
             </div>
           </div>
 
+          <!-- BANNER "ENTRELINHAS DA NOTÍCIA" -->
+          <div class="space-y-4">
+            <a
+              href="/categoria/entrelinhas-da-noticia"
+              onclick="
+                event.preventDefault();
+                alert(
+                  'Na versão definitiva com Astro + Sanity, este link direcionará para os posts da categoria Entrelinhas da Notícia!',
+                );
+              "
+              class="block group relative rounded-2xl overflow-hidden shadow-md border border-slate-200 bg-slate-900 aspect-[16/9] flex items-end p-6 transition-transform hover:scale-[1.02]"
+            >
+              <!-- Imagem de Fundo / Textura com overlay -->
+              <div class="absolute inset-0">
+                <img
+                  src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
+                  alt="Entrelinhas da Notícia"
+                  class="w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                  loading="lazy"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"
+                ></div>
+              </div>
+
+              <!-- Conteúdo do Banner -->
+              <div class="relative z-10 w-full">
+                <span
+                  class="inline-block bg-laranja-norte text-white text-[10px] font-nexa font-extrabold uppercase px-2.5 py-1 rounded-full mb-2 tracking-wider shadow"
+                >
+                  Bastidores & Análise
+                </span>
+                <h3
+                  class="font-nexa font-black text-2xl sm:text-3xl text-white uppercase tracking-tight group-hover:text-amber-300 transition-colors drop-shadow-md"
+                >
+                  Entrelinhas da Notícia
+                </h3>
+                <p
+                  class="text-xs text-slate-300 mt-1 font-inter flex items-center gap-1"
+                >
+                  Clique e confira os fatos de bastidor que movem a política e a
+                  sociedade
+                  <i
+                    data-lucide="arrow-right"
+                    class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1"
+                  ></i>
+                </p>
+              </div>
+            </a>
+          </div>
+
           <!-- NEWSLETTER NORTE67 -->
           <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-md">
             <i
@@ -1107,6 +1284,175 @@
           </div>
         </aside>
       </div>
+
+      <!-- SEÇÃO DE COLUNISTAS - NORTE67 -->
+      <section class="py-12 bg-slate-50 border-y border-slate-200 my-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <!-- Cabeçalho da Seção -->
+          <div
+            class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 mb-8 gap-4"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-laranja-norte shadow-sm"
+              >
+                <i data-lucide="users" class="w-6 h-6"></i>
+              </div>
+              <div>
+                <h2
+                  class="font-nexa font-extrabold text-2xl text-azul-norte uppercase tracking-tight"
+                >
+                  Colunistas & Artigos
+                </h2>
+                <p class="text-xs text-slate-500 font-inter">
+                  Opinião, análise e reflexão sobre a Região Norte de Mato
+                  Grosso do Sul
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="javascript:void(0);"
+              class="inline-flex items-center gap-2 text-xs font-nexa font-bold uppercase text-laranja-norte hover:text-orange-700 transition-colors group self-start sm:self-auto"
+            >
+              Ver todas as colunas
+              <i
+                data-lucide="arrow-right"
+                class="w-4 h-4 transition-transform group-hover:translate-x-1"
+              ></i>
+            </a>
+          </div>
+
+          <!-- Grid de Colunistas -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Colunista 1 -->
+            <article
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div class="flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200"
+                    alt="Glenda de Melo"
+                    class="w-16 h-16 rounded-full object-cover border-2 border-laranja-norte shadow-sm"
+                    loading="lazy"
+                  />
+                  <div>
+                    <span
+                      class="text-xs font-nexa font-bold uppercase tracking-wider text-laranja-norte block"
+                    >
+                      Editorial Norte
+                    </span>
+                    <h3 class="font-nexa font-bold text-slate-800 text-sm">
+                      Glenda de Melo
+                    </h3>
+                  </div>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="block font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors leading-snug"
+                >
+                  O desenvolvimento econômico que chega com força aos municípios
+                  da Região Norte de MS.
+                </a>
+              </div>
+              <div
+                class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-inter"
+              >
+                <span>Atualizado hoje</span>
+                <span
+                  class="text-azul-norte font-semibold group-hover:underline"
+                  >Ver todos os artigos &rarr;</span
+                >
+              </div>
+            </article>
+
+            <!-- Colunista 2 -->
+            <article
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div class="flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200"
+                    alt="Prof. Carlos Alberto"
+                    class="w-16 h-16 rounded-full object-cover border-2 border-azul-norte shadow-sm"
+                    loading="lazy"
+                  />
+                  <div>
+                    <span
+                      class="text-xs font-nexa font-bold uppercase tracking-wider text-azul-norte block"
+                    >
+                      Agro & Negócios
+                    </span>
+                    <h3 class="font-nexa font-bold text-slate-800 text-sm">
+                      Carlos Alberto
+                    </h3>
+                  </div>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="block font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors leading-snug"
+                >
+                  A força da pecuária em Coxim e os novos horizontes da
+                  exportação de grãos no Estado.
+                </a>
+              </div>
+              <div
+                class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-inter"
+              >
+                <span>Ontem</span>
+                <span
+                  class="text-azul-norte font-semibold group-hover:underline"
+                  >Ver todos os artigos &rarr;</span
+                >
+              </div>
+            </article>
+
+            <!-- Colunista 3 -->
+            <article
+              class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-all flex flex-col justify-between group"
+            >
+              <div>
+                <div class="flex items-center gap-4 mb-4">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200"
+                    alt="Mariana Siqueira"
+                    class="w-16 h-16 rounded-full object-cover border-2 border-emerald-500 shadow-sm"
+                    loading="lazy"
+                  />
+                  <div>
+                    <span
+                      class="text-xs font-nexa font-bold uppercase tracking-wider text-emerald-600 block"
+                    >
+                      Cultura & Cotidiano
+                    </span>
+                    <h3 class="font-nexa font-bold text-slate-800 text-sm">
+                      Mariana Siqueira
+                    </h3>
+                  </div>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="block font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors leading-snug"
+                >
+                  As belezas naturais do Rio Taquari e o potencial turístico
+                  inexplorado do Pantanal nortense.
+                </a>
+              </div>
+              <div
+                class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-inter"
+              >
+                <span>Há 2 dias</span>
+                <span
+                  class="text-azul-norte font-semibold group-hover:underline"
+                  >Ver todos os artigos &rarr;</span
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
       <!-- SEÇÃO ANUNCIE NO NORTE67 (CALL TO ACTION PARA VENDAS DE BANNERS DA GLENDA) -->
       <section
