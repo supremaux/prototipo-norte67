@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norte67 - Informação com Credibilidade | Portal de Notícias de Coxim e Região Norte de MS</title>
+  
+  <!-- Tailwind CSS v4 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts: Inter & Google Fonts (Nexa alternative/Plus Jakarta Sans & Outfit for punchy headlines) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --azul-jornalistico: #0F2B48;
+      --laranja-norte: #EA580C;
+      --amarelo-ouro: #FACC15;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
+    
+    .font-nexa {
+      font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .bg-azul-norte { background-color: var(--azul-jornalistico); }
+    .text-azul-norte { color: var(--azul-jornalistico); }
+    .border-azul-norte { border-color: var(--azul-jornalistico); }
+
+    .bg-laranja-norte { background-color: var(--laranja-norte); }
+    .text-laranja-norte { color: var(--laranja-norte); }
+    .border-laranja-norte { border-color: var(--laranja-norte); }
+    
+    .gradiente-norte {
+      background: linear-gradient(135deg, var(--laranja-norte) 0%, #F97316 50%, var(--amarelo-ouro) 100%);
+    }
+
+    .banner-placeholder {
+      background: repeating-linear-gradient(
+        45deg,
+        #f1f5f9,
+        #f1f5f9 10px,
+        #e2e8f0 10px,
+        #e2e8f0 20px
+      );
+    }
+    
+    /* Smooth line clamp for news cards */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .line-clamp-3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-orange-500 selection:text-white">
+
+  <!-- TOPBAR CLIMA, COTAÇÕES E UTILIDADE -->
+  <div class="bg-slate-900 text-slate-300 text-xs border-b border-slate-800 py-2">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
+      <!-- Clima & Data -->
+      <div class="flex items-center gap-4 flex-wrap">
+        <span class="flex items-center gap-1.5 font-medium text-slate-200">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-orange-500"></i> Coxim / MS
+        </span>
+        <span class="flex items-center gap-1.5 text-amber-400 font-semibold">
+          <i data-lucide="sun" class="w-3.5 h-3.5"></i> 32°C Ensolarado
+        </span>
+        <span class="hidden md:inline text-slate-500">|</span>
+        <span id="current-date" class="hidden md:inline text-slate-400"></span>
+      </div>
+
+      <!-- Agro & Cotações Regionais -->
+      <div class="flex items-center gap-4 text-xs font-mono">
+        <span class="hidden lg:inline text-slate-400 font-sans"><i data-lucide="trending-up" class="w-3 h-3 inline text-emerald-400 mr-1"></i>Mercado Agro MS:</span>
+        <span class="bg-slate-800 px-2 py-0.5 rounded text-slate-200">Boi Gordo: <strong class="text-emerald-400">R$ 248,50</strong></span>
+        <span class="bg-slate-800 px-2 py-0.5 rounded text-slate-200">Soja (sc): <strong class="text-emerald-400">R$ 126,00</strong></span>
+        <span class="hidden sm:inline bg-slate-800 px-2 py-0.5 rounded text-slate-200">Dólar: <strong class="text-slate-300">R$ 5,68</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUPER BANNER TOPO (320x90 ou 728x90) -->
+  <div class="bg-slate-100 py-3 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 flex justify-center">
+      <div class="w-full max-w-4xl h-[90px] banner-placeholder border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-between px-6 hover:border-orange-500 transition-colors cursor-pointer group">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center font-bold">
+            <i data-lucide="megaphone" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <p class="font-nexa font-bold text-slate-800 text-sm sm:text-base group-hover:text-orange-600 transition-colors">ESPAÇO PUBLICITÁRIO VIP - SUPERT topo (728x90)</p>
+            <p class="text-xs text-slate-500">Anuncie sua empresa com máxima visibilidade na Região Norte de MS</p>
+          </div>
+        </div>
+        <a href="#anuncie" onclick="javascript:void(0);" class="hidden sm:inline-flex items-center gap-1 bg-laranja-norte hover:bg-orange-700 text-white font-nexa text-xs uppercase tracking-wider font-bold px-4 py-2 rounded shadow transition-all transform group-hover:scale-105">
+          Anuncie Aqui <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HEADER PRINCIPAL COM BRANDING -->
+  <header class="bg-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between py-4 border-b border-slate-100">
+        
+        <!-- Logo Oficial Norte67 -->
+        <a href="javascript:void(0);" class="flex items-center gap-3 group">
+          <img src="https://res.cloudinary.com/dnzfvkgag/image/upload/v1794393376/logo-norte67_wpmvyu.png" alt="Norte67 - Informação com Credibilidade" class="h-12 sm:h-16 w-auto object-contain transition-transform group-hover:scale-105">
+        </a>
+
+        <!-- Ações & Redes Sociais -->
+        <div class="hidden lg:flex items-center gap-6">
+          <!-- Redes Sociais com Cores Institucionais -->
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider mr-1">Siga o Norte67:</span>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded-full bg-slate-100 text-azul-norte hover:bg-azul-norte hover:text-white flex items-center justify-center transition-all">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded-full bg-slate-100 text-azul-norte hover:bg-azul-norte hover:text-white flex items-center justify-center transition-all">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-all" title="WhatsApp Jornalismo">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded-full bg-slate-100 text-azul-norte hover:bg-azul-norte hover:text-white flex items-center justify-center transition-all">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Botão Envie Notícia / WhatsApp -->
+          <a href="javascript:void(0);" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-nexa text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
+            <i data-lucide="send" class="w-4 h-4"></i> Enviar Notícia
+          </a>
+
+          <!-- Botão Anuncie -->
+          <a href="#anuncie" onclick="javascript:void(0);" class="flex items-center gap-2 bg-laranja-norte hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-nexa text-xs font-bold uppercase tracking-wider transition-all shadow-sm">
+            <i data-lucide="badge-dollar-sign" class="w-4 h-4"></i> Anuncie no Portal
+          </a>
+        </div>
+
+        <!-- Botão Mobile Menu -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100">
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+
+      <!-- NAVBAR NAVEGAÇÃO CATEGORIAS -->
+      <nav class="hidden lg:flex items-center justify-between py-2 text-sm font-nexa font-bold">
+        <div class="flex items-center gap-1">
+          <a href="javascript:void(0);" class="px-3 py-2 text-laranja-norte border-b-2 border-laranja-norte flex items-center gap-1.5">
+            <i data-lucide="home" class="w-4 h-4"></i> Home
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Últimas
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Agro
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Policial
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Cidades & Coxim
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Política
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Economia
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Esportes
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Equipe
+          </a>
+          <a href="javascript:void(0);" class="px-3 py-2 text-slate-700 hover:text-laranja-norte transition-colors">
+            Fale Conosco
+          </a>
+        </div>
+
+        <button id="search-trigger" class="p-2 text-slate-500 hover:text-azul-norte transition-colors" title="Buscar notícia">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+      </nav>
+    </div>
+
+    <!-- MENU MOBILE EXPANSÍVEL -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-2 font-nexa font-bold">
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md bg-orange-50 text-laranja-norte">Home</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Últimas Notícias</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Agro & Pecuária</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Policial</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Coxim e Região Norte</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Política MS</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Economia</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Esportes</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Equipe Editorial</a>
+      <a href="javascript:void(0);" class="block px-3 py-2 rounded-md text-slate-700 hover:bg-slate-50">Fale Conosco</a>
+      <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
+        <a href="#anuncie" onclick="javascript:void(0);" class="w-full text-center bg-laranja-norte text-white py-2.5 rounded-lg">Anuncie no Norte67</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- TICKER ÚLTIMAS NOTÍCIAS (PLANTÃO) -->
+  <div class="bg-azul-norte text-white py-2.5 shadow-inner">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 bg-laranja-norte text-white font-nexa font-black text-xs uppercase px-2.5 py-1 rounded shadow animate-pulse shrink-0">
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i> Plantão
+      </span>
+      <div class="overflow-hidden whitespace-nowrap w-full text-xs sm:text-sm">
+        <div class="inline-flex items-center gap-8 animate-marquee">
+          <a href="javascript:void(0);" class="hover:text-amber-400 transition-colors flex items-center gap-2">
+            <span class="text-amber-400 font-bold">[10:42] COXIM:</span> Obras do novo Anel Viário avançam e prometem agilizar o escoamento da safra no MS
+          </a>
+          <span class="text-slate-600">•</span>
+          <a href="javascript:void(0);" class="hover:text-amber-400 transition-colors flex items-center gap-2">
+            <span class="text-amber-400 font-bold">[10:15] POLICIAL:</span> Operação da PM no Norte de MS recupera veículos furtados na região de Sonora
+          </a>
+          <span class="text-slate-600">•</span>
+          <a href="javascript:void(0);" class="hover:text-amber-400 transition-colors flex items-center gap-2">
+            <span class="text-amber-400 font-bold">[09:30] AGRO:</span> Expocoxim confirma recorde de expositores para a feira deste ano
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL DA HOME -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow space-y-8">
+
+    <!-- SEÇÃO 1: HERO MANCHETE DE CAPA GRID TRIPLO (ESTILO CAMPO GRANDE NEWS / THE SUN) -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- MANCHETE PRINCIPAL (BIG HERO - 7 COLS) -->
+      <article class="lg:col-span-7 bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200/80 group flex flex-col justify-between">
+        <div class="relative overflow-hidden aspect-[16/10]">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" alt="Agro no Norte de MS" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+          
+          <span class="absolute top-4 left-4 bg-laranja-norte text-white font-nexa font-extrabold text-xs uppercase px-3 py-1 rounded-full shadow-lg tracking-wider">
+            Destaque Regional • Agro
+          </span>
+
+          <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white">
+            <div class="flex items-center gap-2 text-slate-300 text-xs mb-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> Há 25 minutos • Por Redação Norte67
+            </div>
+            <h1 class="font-nexa font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white leading-tight mb-3 group-hover:text-amber-300 transition-colors">
+              Norte de MS lidera produtividade de grãos e atrai novos investimentos milionários para Coxim
+            </h1>
+            <p class="text-slate-200 text-sm sm:text-base line-clamp-2 font-normal text-slate-300">
+              Setor agropecuário da Bacia do Taquari registra crescimento recorde no trimestre, impulsionado por tecnologia de ponta e logística integrada.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- DUAS NOTÍCIAS SECUNDÁRIAS (5 COLS) -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        
+        <!-- SECUNDÁRIA 1 -->
+        <article class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full">
+          <div class="sm:w-2/5 aspect-[4/3] sm:aspect-auto overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=600&q=80" alt="Obras em Coxim" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <span class="absolute top-2 left-2 bg-azul-norte text-white font-nexa text-[10px] font-bold uppercase px-2 py-0.5 rounded">
+              Cidades
+            </span>
+          </div>
+          <div class="p-4 sm:w-3/5 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 mb-1">Hoje em Coxim/MS</div>
+              <h2 class="font-nexa font-bold text-base text-slate-900 group-hover:text-laranja-norte transition-colors leading-snug">
+                Prefeitura anuncia pacote de pavimentação para bairros de Coxim
+              </h2>
+            </div>
+            <p class="text-xs text-slate-600 line-clamp-2 mt-2">
+              Investimento de R$ 12 milhões vai beneficiar moradores e melhorar tráfego urbano.
+            </p>
+          </div>
+        </article>
+
+        <!-- SECUNDÁRIA 2 -->
+        <article class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-md transition-shadow group flex flex-col sm:flex-row h-full">
+          <div class="sm:w-2/5 aspect-[4/3] sm:aspect-auto overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?auto=format&fit=crop&w=600&q=80" alt="Policial MS" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <span class="absolute top-2 left-2 bg-red-700 text-white font-nexa text-[10px] font-bold uppercase px-2 py-0.5 rounded">
+              Policial
+            </span>
+          </div>
+          <div class="p-4 sm:w-3/5 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 mb-1">Região Norte</div>
+              <h2 class="font-nexa font-bold text-base text-slate-900 group-hover:text-laranja-norte transition-colors leading-snug">
+                PRF reforça fiscalização na BR-163 durante feriado prolongado
+              </h2>
+            </div>
+            <p class="text-xs text-slate-600 line-clamp-2 mt-2">
+              Ações preventivas focam no trecho entre Pedro Gomes, Sonora e Rio Verde.
+            </p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- BANNER ANUNCIANTE DUPLEX (RETÂNGULO CENTRAL) -->
+    <section class="my-8">
+      <div class="w-full h-32 sm:h-28 banner-placeholder border-2 border-dashed border-slate-300 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 hover:border-orange-500 transition-colors cursor-pointer group">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center font-extrabold shrink-0 shadow-md">
+            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="bg-amber-400 text-slate-900 text-[10px] font-extrabold uppercase px-2 py-0.5 rounded">Espaço do Anunciante</span>
+              <span class="text-xs text-slate-500">Banner Central da Home (970x250)</span>
+            </div>
+            <h3 class="font-nexa font-bold text-slate-900 text-base sm:text-lg group-hover:text-laranja-norte transition-colors">
+              Sua marca em destaque para milhares de leitores do Norte de MS
+            </h3>
+          </div>
+        </div>
+        <a href="#anuncie" onclick="javascript:void(0);" class="shrink-0 bg-azul-norte hover:bg-slate-800 text-white font-nexa text-xs uppercase tracking-wider font-bold px-5 py-2.5 rounded-lg shadow transition-all">
+          Anuncie Aqui
+        </a>
+      </div>
+    </section>
+
+    <!-- SEÇÃO DUPLA: FEED DE NOTÍCIAS + SIDEBAR LATERAL (2 COLUNAS) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- COLUNA DA ESQUERDA: NOTÍCIAS POR CATEGORIA (8 COLUNAS) -->
+      <div class="lg:col-span-8 space-y-10">
+
+        <!-- BLOCO AGRO & PECUÁRIA (DESTAQUE DA REGIÃO) -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between border-b-2 border-emerald-500 pb-3 mb-6">
+            <h3 class="font-nexa font-extrabold text-xl text-slate-900 flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+              Agro & Pecuária Norte MS
+            </h3>
+            <a href="javascript:void(0);" class="text-xs font-bold text-emerald-600 hover:text-emerald-800 flex items-center gap-1">
+              Ver todas <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Item 1 -->
+            <article class="group">
+              <div class="aspect-video rounded-lg overflow-hidden mb-3 relative">
+                <img src="https://images.unsplash.com/photo-1595841696677-6489ff3f8cd1?auto=format&fit=crop&w=600&q=80" alt="Gado Pantanal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <span class="absolute bottom-2 left-2 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">Pecuária</span>
+              </div>
+              <h4 class="font-nexa font-bold text-base text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug mb-2">
+                Manejo sustentável na Bacia do Taquari ganha selo de inovação ambiental
+              </h4>
+              <p class="text-xs text-slate-600 line-clamp-2">
+                Produtores rurais de Coxim e Alcinópolis adotam novas práticas de conservação do solo.
+              </p>
+            </article>
+
+            <!-- Item 2 -->
+            <article class="group">
+              <div class="aspect-video rounded-lg overflow-hidden mb-3 relative">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" alt="Lavoura de Soja" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <span class="absolute bottom-2 left-2 bg-emerald-700 text-white text-[10px] font-bold uppercase px-2 py-0.5 rounded">Safra 2026</span>
+              </div>
+              <h4 class="font-nexa font-bold text-base text-slate-900 group-hover:text-emerald-600 transition-colors leading-snug mb-2">
+                Cloma favorece plantio de milho safrinha na região de Sonora e Gabriel
+              </h4>
+              <p class="text-xs text-slate-600 line-clamp-2">
+                Expectativa é superar em 8% a colheita do ano anterior segundo dados do Famasul.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- BLOCO POLICIAL & CIDADES (LISTAGEM INTERCALADA) -->
+        <section class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <div class="flex items-center justify-between border-b-2 border-azul-norte pb-3 mb-6">
+            <h3 class="font-nexa font-extrabold text-xl text-slate-900 flex items-center gap-2">
+              <i data-lucide="shield-alert" class="w-5 h-5 text-azul-norte"></i>
+              Cidades & Policial
+            </h3>
+            <span class="text-xs text-slate-400 font-semibold">Atualizado em tempo real</span>
+          </div>
+
+          <div class="space-y-4">
+            <!-- News Row 1 -->
+            <article class="flex flex-col sm:flex-row gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=400&q=80" alt="Reunião Comercial" class="w-full sm:w-36 h-24 rounded-lg object-cover group-hover:scale-105 transition-transform">
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">
+                    <span class="font-bold text-laranja-norte uppercase">Coxim</span> • 1h atrás
+                  </div>
+                  <h4 class="font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors">
+                    Associação Comercial de Coxim lança campanha para fortalecer comércio local
+                  </h4>
+                </div>
+                <p class="text-xs text-slate-600 line-clamp-1">Iniciativa oferece prêmios e incentiva compras nas lojas do centro da cidade.</p>
+              </div>
+            </article>
+
+            <hr class="border-slate-100">
+
+            <!-- News Row 2 -->
+            <article class="flex flex-col sm:flex-row gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
+              <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=400&q=80" alt="Ônibus Escolar" class="w-full sm:w-36 h-24 rounded-lg object-cover group-hover:scale-105 transition-transform">
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">
+                    <span class="font-bold text-azul-norte uppercase">Rio Verde</span> • 2h atrás
+                  </div>
+                  <h4 class="font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors">
+                    Frota do transporte escolar é 100% renovada para o ano letivo na zona rural
+                  </h4>
+                </div>
+                <p class="text-xs text-slate-600 line-clamp-1">Novos veículos adaptados garantem mais segurança aos alunos dos distritos.</p>
+              </div>
+            </article>
+
+            <hr class="border-slate-100">
+
+            <!-- News Row 3 -->
+            <article class="flex flex-col sm:flex-row gap-4 p-3 rounded-xl hover:bg-slate-50 transition-colors group">
+              <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=400&q=80" alt="Esporte Regional" class="w-full sm:w-36 h-24 rounded-lg object-cover group-hover:scale-105 transition-transform">
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">
+                    <span class="font-bold text-amber-600 uppercase">Esportes</span> • 3h atrás
+                  </div>
+                  <h4 class="font-nexa font-bold text-slate-900 text-base group-hover:text-laranja-norte transition-colors">
+                    Campeonato Amador de Futebol de Coxim atrai centenas de torcedores no fim de semana
+                  </h4>
+                </div>
+                <p class="text-xs text-slate-600 line-clamp-1">Rodada decisiva definiu os semifinalistas do torneio regional.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- SEÇÃO MULTIMÍDIA E VÍDEOS (TV NORTE67) -->
+        <section class="bg-slate-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-6">
+            <h3 class="font-nexa font-extrabold text-xl text-white flex items-center gap-2">
+              <i data-lucide="play-circle" class="w-6 h-6 text-laranja-norte"></i>
+              TV Norte67 • Vídeos e Entrevistas
+            </h3>
+            <span class="bg-red-600 text-white font-bold text-[10px] uppercase px-2 py-0.5 rounded animate-pulse">Ao Vivo</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Player Principal simulado -->
+            <div class="space-y-3">
+              <div class="relative aspect-video bg-black rounded-xl overflow-hidden group border border-slate-800">
+                <img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=800&q=80" alt="Entrevista Exclusiva" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-14 h-14 rounded-full bg-laranja-norte text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform cursor-pointer">
+                    <i data-lucide="play" class="w-7 h-7 fill-current ml-1"></i>
+                  </div>
+                </div>
+                <span class="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2 py-0.5 rounded font-mono">14:20</span>
+              </div>
+              <h4 class="font-nexa font-bold text-base text-slate-100 hover:text-amber-400 transition-colors cursor-pointer">
+                Entrevista Especial: O futuro do turismo de pesca na Bacia do Rio Taquari
+              </h4>
+            </div>
+
+            <!-- Lista de Vídeos Curtos -->
+            <div class="space-y-4">
+              <div class="flex gap-3 items-center group cursor-pointer p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
+                <div class="relative w-28 aspect-video rounded bg-black shrink-0 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=300&q=80" alt="Tecnologia no Campo" class="w-full h-full object-cover">
+                  <i data-lucide="play" class="w-4 h-4 text-white absolute inset-0 m-auto"></i>
+                </div>
+                <div>
+                  <h5 class="font-nexa font-semibold text-xs text-slate-200 group-hover:text-laranja-norte transition-colors line-clamp-2">
+                    Drone e IA na agricultura de precisão em Sonora/MS
+                  </h5>
+                  <span class="text-[10px] text-slate-400">TV Norte67 • Há 1 dia</span>
+                </div>
+              </div>
+
+              <div class="flex gap-3 items-center group cursor-pointer p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
+                <div class="relative w-28 aspect-video rounded bg-black shrink-0 overflow-hidden">
+                  <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=300&q=80" alt="Evento em Coxim" class="w-full h-full object-cover">
+                  <i data-lucide="play" class="w-4 h-4 text-white absolute inset-0 m-auto"></i>
+                </div>
+                <div>
+                  <h5 class="font-nexa font-semibold text-xs text-slate-200 group-hover:text-laranja-norte transition-colors line-clamp-2">
+                    Melhores momentos do Festival Gastronômico do Peixe
+                  </h5>
+                  <span class="text-[10px] text-slate-400">TV Norte67 • Há 2 dias</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- COLUNA DA DIREITA: SIDEBAR & BANNERS ANUNCIANTES (4 COLUNAS) -->
+      <aside class="lg:col-span-4 space-y-8">
+
+        <!-- BANNER LATERAL LATERIS VIP (300x250) -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 text-center">
+          <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-2 block">Publicidade Regional</span>
+          <div class="w-full h-[250px] banner-placeholder border-2 border-dashed border-slate-300 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:border-orange-500 transition-colors cursor-pointer group">
+            <div class="w-12 h-12 rounded-full bg-orange-100 text-laranja-norte flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="sparkles" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-nexa font-extrabold text-slate-900 text-base mb-1">BANNER RECTANGLE (300x250)</h4>
+            <p class="text-xs text-slate-500 mb-4 px-2">Anuncie no maior portal de notícias do Norte de Mato Grosso do Sul</p>
+            <a href="#anuncie" onclick="javascript:void(0);" class="bg-laranja-norte hover:bg-orange-700 text-white font-nexa text-xs uppercase font-bold px-4 py-2 rounded-lg shadow">
+              Anuncie Aqui
+            </a>
+          </div>
+        </div>
+
+        <!-- MAIS LIDAS DA SEMANA -->
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <h3 class="font-nexa font-extrabold text-lg text-slate-900 border-b-2 border-laranja-norte pb-3 mb-4 flex items-center gap-2">
+            <i data-lucide="flame" class="w-5 h-5 text-laranja-norte"></i>
+            Mais Lidas do Norte67
+          </h3>
+
+          <div class="space-y-4">
+            <a href="javascript:void(0);" class="flex items-start gap-3 group">
+              <span class="font-nexa font-black text-2xl text-orange-500/40 group-hover:text-laranja-norte transition-colors">01</span>
+              <div>
+                <h4 class="font-nexa font-bold text-xs sm:text-sm text-slate-800 group-hover:text-laranja-norte transition-colors leading-snug">
+                  Concurso público abre mais de 50 vagas na região Norte de MS com salários de até R$ 8 mil
+                </h4>
+                <span class="text-[10px] text-slate-400">18.420 visualizações</span>
+              </div>
+            </a>
+
+            <hr class="border-slate-100">
+
+            <a href="javascript:void(0);" class="flex items-start gap-3 group">
+              <span class="font-nexa font-black text-2xl text-slate-300 group-hover:text-laranja-norte transition-colors">02</span>
+              <div>
+                <h4 class="font-nexa font-bold text-xs sm:text-sm text-slate-800 group-hover:text-laranja-norte transition-colors leading-snug">
+                  Nível do Rio Taquari estabiliza em Coxim e atrai pescadores no final de semana
+                </h4>
+                <span class="text-[10px] text-slate-400">14.210 visualizações</span>
+              </div>
+            </a>
+
+            <hr class="border-slate-100">
+
+            <a href="javascript:void(0);" class="flex items-start gap-3 group">
+              <span class="font-nexa font-black text-2xl text-slate-300 group-hover:text-laranja-norte transition-colors">03</span>
+              <div>
+                <h4 class="font-nexa font-bold text-xs sm:text-sm text-slate-800 group-hover:text-laranja-norte transition-colors leading-snug">
+                  Nova ponte sobre o Rio Correntes vai integrar MS e Mato Grosso em Sonora
+                </h4>
+                <span class="text-[10px] text-slate-400">9.850 visualizações</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- BANNER TOWER / ARRANHA-CÉU (300x600) -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 text-center">
+          <span class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-2 block">Publicidade Premium</span>
+          <div class="w-full h-[400px] banner-placeholder border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center justify-between text-center hover:border-orange-500 transition-colors cursor-pointer group">
+            <div class="w-14 h-14 rounded-full bg-azul-norte text-amber-400 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+              <i data-lucide="award" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <h4 class="font-nexa font-extrabold text-slate-900 text-lg mb-2">BANNER HALF PAGE (300x600)</h4>
+              <p class="text-xs text-slate-500 mb-2">Máximo engajamento e presença constante na navegação do leitor</p>
+              <div class="inline-block bg-emerald-100 text-emerald-800 font-bold text-[10px] uppercase px-2.5 py-1 rounded">
+                Gestão via Sanity CMS
+              </div>
+            </div>
+            <a href="#anuncie" onclick="javascript:void(0);" class="w-full bg-azul-norte hover:bg-slate-800 text-white font-nexa text-xs uppercase font-bold py-3 rounded-lg shadow">
+              Anuncie Aqui
+            </a>
+          </div>
+        </div>
+
+        <!-- NEWSLETTER NORTE67 -->
+        <div class="bg-gradient-to-br from-azul-norte to-slate-900 text-white p-6 rounded-2xl shadow-md">
+          <i data-lucide="mail-check" class="w-8 h-8 text-laranja-norte mb-3"></i>
+          <h4 class="font-nexa font-extrabold text-lg mb-1">Receba as notícias de Coxim e Região</h4>
+          <p class="text-xs text-slate-300 mb-4">Cadastre seu e-mail e receba o resumo diário do Norte67 em primeira mão.</p>
+          <form onsubmit="event.preventDefault(); alert('Obrigado por se inscrever na newsletter do Norte67!');" class="space-y-2">
+            <input type="email" placeholder="Seu melhor e-mail..." required class="w-full px-3 py-2.5 text-xs rounded-lg text-slate-900 border-0 focus:ring-2 focus:ring-orange-500 outline-none">
+            <button type="submit" class="w-full bg-laranja-norte hover:bg-orange-600 text-white font-nexa font-bold text-xs uppercase py-2.5 rounded-lg transition-colors shadow">
+              Inscrever-se Gratuitamente
+            </button>
+          </form>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- SEÇÃO ANUNCIE NO NORTE67 (CALL TO ACTION PARA VENDAS DE BANNERS DA GLENDA) -->
+    <section id="anuncie" class="bg-gradient-to-r from-azul-norte via-slate-900 to-azul-norte text-white rounded-3xl p-8 sm:p-12 shadow-xl border border-slate-800 my-12 relative overflow-hidden">
+      <div class="relative z-10 max-w-3xl">
+        <span class="inline-block bg-laranja-norte text-white font-nexa text-xs uppercase font-extrabold px-3 py-1 rounded-full mb-4">
+          Comercial & Mídia
+        </span>
+        <h2 class="font-nexa font-extrabold text-2xl sm:text-4xl text-white mb-4 leading-tight">
+          Anuncie no Norte67 e conecte sua empresa a milhares de leitores de Coxim e todo o MS
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base mb-6 leading-relaxed">
+          Oferecemos formatos de banners estratégicos, publieditoriais e patrocínio de categorias (Agro, Policial, Cidades) com relatórios e gestão simplificada.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="https://wa.me/5567999999999?text=Olá,%20gostaria%20de%20anunciar%20no%20portal%20Norte67" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-nexa font-bold text-sm uppercase px-6 py-3.5 rounded-xl shadow-lg flex items-center gap-2 transition-all transform hover:scale-105">
+            <i data-lucide="message-circle" class="w-5 h-5"></i> Falar com o Comercial via WhatsApp
+          </a>
+          <a href="mailto:meloglenda52@gmail.com" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-nexa font-bold text-sm uppercase px-6 py-3.5 rounded-xl border border-slate-700 flex items-center gap-2 transition-colors">
+            <i data-lucide="mail" class="w-5 h-5"></i> Enviar E-mail
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER INSTITUCIONAL COMPLETO -->
+  <footer class="bg-slate-950 text-slate-400 border-t-4 border-laranja-norte pt-12 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-10 border-b border-slate-800">
+        
+        <!-- Coluna 1: Branding e Sobre -->
+        <div class="lg:col-span-2 space-y-4">
+          <img src="https://res.cloudinary.com/dnzfvkgag/image/upload/v1794393376/logo-norte67_wpmvyu.png" alt="Norte67" class="h-12 w-auto object-contain brightness-0 invert">
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+            O portal <strong>Norte67</strong> é o principal veículo de imprensa sediado em Coxim/MS, focado na cobertura jornalística ética, ágil e abrangente de toda a Região Norte de Mato Grosso do Sul.
+          </p>
+          <div class="text-xs text-slate-400 space-y-1">
+            <p><i data-lucide="map-pin" class="w-3.5 h-3.5 inline text-orange-500 mr-1"></i> Rua Waldiley Robaina, 57 - Lagoa Dourada, Coxim - MS</p>
+            <p><i data-lucide="mail" class="w-3.5 h-3.5 inline text-orange-500 mr-1"></i> meloglenda52@gmail.com</p>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Categorias -->
+        <div>
+          <h4 class="font-nexa font-bold text-white text-sm uppercase mb-4 tracking-wider">Editorias</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Agro & Pecuária</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Cidades & Coxim</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Policial & Segurança</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Política MS</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Economia Regional</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Esportes & Lazer</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Institucional -->
+        <div>
+          <h4 class="font-nexa font-bold text-white text-sm uppercase mb-4 tracking-wider">Institucional</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Quem Somos</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Equipe Editorial</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Anuncie no Portal</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Fale Conosco</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Código de Ética</a></li>
+            <li><a href="javascript:void(0);" class="hover:text-amber-400 transition-colors">Política de Privacidade</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 4: Redes & Expediente -->
+        <div>
+          <h4 class="font-nexa font-bold text-white text-sm uppercase mb-4 tracking-wider">Redação</h4>
+          <p class="text-xs text-slate-400 mb-3"><strong>Jornalista Responsável:</strong><br>Glenda de Melo Oliveira Pedroso</p>
+          <div class="flex gap-2">
+            <a href="javascript:void(0);" class="w-8 h-8 rounded bg-slate-800 hover:bg-laranja-norte text-white flex items-center justify-center transition-colors">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded bg-slate-800 hover:bg-laranja-norte text-white flex items-center justify-center transition-colors">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+            <a href="javascript:void(0);" class="w-8 h-8 rounded bg-slate-800 hover:bg-laranja-norte text-white flex items-center justify-center transition-colors">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright e Assinatura Desenvolvimento -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <p>© 2026 Norte67 - Todos os direitos reservados. Coxim/MS.</p>
+        <p class="flex items-center gap-1">
+          Desenvolvido com excelência por 
+          <a href="https://supremaux.com" target="_blank" class="text-slate-300 hover:text-orange-400 font-bold underline transition-colors">
+            Suprema Serviços Web
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT & INTERATIVIDADE -->
+  <script>
+    // Inicializar ícones do Lucide
+    lucide.createIcons();
+
+    // Data Atual no Header
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date();
+    document.getElementById('current-date').innerText = today.toLocaleDateString('pt-BR', options);
+
+    // Toggle Menu Mobile
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Trigger de Busca Simulado
+    document.getElementById('search-trigger').addEventListener('click', () => {
+      const termo = prompt('O que você deseja buscar no Norte67?');
+      if (termo) {
+        alert(`Buscando por: "${termo}" no acervo do Norte67...`);
+      }
+    });
+  </script>
+</body>
+</html>
